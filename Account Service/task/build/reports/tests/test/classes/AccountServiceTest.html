@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">2.386s</div>
+<div class="counter">14.782s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">start</td>
-<td class="success">2.386s</td>
+<td class="success">14.782s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -98,70 +98,141 @@ Start test 1?[0m
 ?[0m?[0;34m =========|_|==============|___/=/_/_/_/
 ?[0m?[0;34m :: Spring Boot ::        (v2.3.1.RELEASE)
 ?[0m?[0;34m
-?[0m?[0;34m2023-02-07 09:17:18.878  INFO 334220 --- [    Test worker] account.AccountServiceApplication        : Starting AccountServiceApplication on kronos-Olympos with PID 334220 (started by kronos in /home/kronos/IdeaProjects/Account Service/Account Service/task)
-?[0m?[0;34m2023-02-07 09:17:18.880  INFO 334220 --- [    Test worker] account.AccountServiceApplication        : No active profile set, falling back to default profiles: default
-?[0m?[0;34m2023-02-07 09:17:19.353  INFO 334220 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-?[0m?[0;34m2023-02-07 09:17:19.366  INFO 334220 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8ms. Found 0 JPA repository interfaces.
-?[0m?[0;34m2023-02-07 09:17:19.661  INFO 334220 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
-?[0m?[0;34m2023-02-07 09:17:19.667  INFO 334220 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-?[0m?[0;34m2023-02-07 09:17:19.667  INFO 334220 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.36]
-?[0m?[0;34m2023-02-07 09:17:19.717  INFO 334220 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-?[0m?[0;34m2023-02-07 09:17:19.718  INFO 334220 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 815 ms
-?[0m?[0;34m2023-02-07 09:17:19.873  INFO 334220 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-?[0m?[0;34m2023-02-07 09:17:19.878  INFO 334220 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-?[0m?[0;34m2023-02-07 09:17:19.975  INFO 334220 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-?[0;34m2023-02-07 09:17:20.006  INFO 334220 --- [         task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-?[0m?[0;34m2023-02-07 09:17:20.031  INFO 334220 --- [         task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.17.Final
-?[0m?[0;34m2023-02-07 09:17:20.034  WARN 334220 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-?[0m?[0;34m2023-02-07 09:17:20.113  INFO 334220 --- [         task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-?[0m?[0;34m2023-02-07 09:17:20.181  INFO 334220 --- [         task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-?[0m?[0;34m2023-02-07 09:17:20.317  INFO 334220 --- [         task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-?[0m?[0;34m2023-02-07 09:17:20.322  INFO 334220 --- [         task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-?[0m?[0;34m2023-02-07 09:17:20.373  INFO 334220 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
-?[0m?[0;34m2023-02-07 09:17:20.409  INFO 334220 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
-?[0m?[0;34m2023-02-07 09:17:20.411  INFO 334220 --- [    Test worker] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
-?[0m?[0;34m2023-02-07 09:17:20.411  INFO 334220 --- [    Test worker] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
-?[0m?[0;34m2023-02-07 09:17:20.422  INFO 334220 --- [    Test worker] account.AccountServiceApplication        : Started AccountServiceApplication in 1.707 seconds (JVM running for 2.166)
-?[0;34m2023-02-07 09:17:20.624  INFO 334220 --- [io-28852-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-?[0m?[0;34m2023-02-07 09:17:20.624  INFO 334220 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-?[0m?[0;34m2023-02-07 09:17:20.629  INFO 334220 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+?[0m?[0;34m2023-02-10 09:20:45.064  INFO 119385 --- [    Test worker] account.AccountServiceApplication        : Starting AccountServiceApplication on kronos-Olympos with PID 119385 (started by kronos in /home/kronos/IdeaProjects/Account Service/Account Service/task)
+?[0m?[0;34m2023-02-10 09:20:45.066  INFO 119385 --- [    Test worker] account.AccountServiceApplication        : No active profile set, falling back to default profiles: default
+?[0m?[0;34m2023-02-10 09:20:45.567  INFO 119385 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+?[0m?[0;34m2023-02-10 09:20:45.598  INFO 119385 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 27ms. Found 1 JPA repository interfaces.
+?[0m?[0;34m2023-02-10 09:20:45.930  INFO 119385 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
+?[0m?[0;34m2023-02-10 09:20:45.936  INFO 119385 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+?[0m?[0;34m2023-02-10 09:20:45.937  INFO 119385 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.36]
+?[0m?[0;34m2023-02-10 09:20:45.983  INFO 119385 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+?[0m?[0;34m2023-02-10 09:20:45.983  INFO 119385 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 895 ms
+?[0m?[0;34m2023-02-10 09:20:46.063  INFO 119385 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+?[0m?[0;34m2023-02-10 09:20:46.161  INFO 119385 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+?[0m?[0;34m2023-02-10 09:20:46.165  INFO 119385 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
+?[0m?[0;34m2023-02-10 09:20:46.254  INFO 119385 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+?[0;34m2023-02-10 09:20:46.280  INFO 119385 --- [         task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+?[0m?[0;34m2023-02-10 09:20:46.300  WARN 119385 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+?[0m?[0;34m2023-02-10 09:20:46.311  INFO 119385 --- [         task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.17.Final
+?[0m?[0;34m2023-02-10 09:20:46.394  INFO 119385 --- [         task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+?[0m?[0;34m2023-02-10 09:20:46.431  INFO 119385 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3eb9c575, org.springframework.security.web.context.SecurityContextPersistenceFilter@7f012923, org.springframework.security.web.header.HeaderWriterFilter@464400b3, org.springframework.security.web.authentication.logout.LogoutFilter@5e158f33, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6e948f1c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4403bff8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@60ed0b9d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3f322610, org.springframework.security.web.session.SessionManagementFilter@314f59b, org.springframework.security.web.access.ExceptionTranslationFilter@4005e485, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@353b0719]
+?[0m?[0;34m2023-02-10 09:20:46.473  INFO 119385 --- [         task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+?[0m?[0;34m2023-02-10 09:20:46.904  INFO 119385 --- [         task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+?[0m?[0;34m2023-02-10 09:20:46.909  INFO 119385 --- [         task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+?[0m?[0;34m2023-02-10 09:20:46.971  INFO 119385 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+?[0m?[0;34m2023-02-10 09:20:47.011  INFO 119385 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
+?[0m?[0;34m2023-02-10 09:20:47.012  INFO 119385 --- [    Test worker] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+?[0m?[0;34m2023-02-10 09:20:47.240  INFO 119385 --- [    Test worker] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+?[0m?[0;34m2023-02-10 09:20:47.249  INFO 119385 --- [    Test worker] account.AccountServiceApplication        : Started AccountServiceApplication in 2.351 seconds (JVM running for 2.794)
+?[0;34m2023-02-10 09:20:47.467  INFO 119385 --- [io-28852-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+?[0m?[0;34m2023-02-10 09:20:47.467  INFO 119385 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+?[0m?[0;34m2023-02-10 09:20:47.473  INFO 119385 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
 ?[0m?[1;31m
 Start test 2?[0m
-?[0;34m2023-02-07 09:17:20.777  WARN 334220 --- [io-28852-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;?&gt; account.Controllers.AuthController.signUp(account.Models.User): [Field error in object 'user' on field 'name': rejected value []; codes [NotBlank.user.name,NotBlank.name,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.name,name]; arguments []; default message [name]]; default message [must not be blank]] ]
 ?[1;31m
 Start test 3?[0m
-?[0;34m2023-02-07 09:17:20.799  WARN 334220 --- [io-28852-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;?&gt; account.Controllers.AuthController.signUp(account.Models.User) with 2 errors: [Field error in object 'user' on field 'name': rejected value [null]; codes [NotNull.user.name,NotNull.name,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.name,name]; arguments []; default message [name]]; default message [must not be null]] [Field error in object 'user' on field 'name': rejected value [null]; codes [NotBlank.user.name,NotBlank.name,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.name,name]; arguments []; default message [name]]; default message [must not be blank]] ]
 ?[1;31m
 Start test 4?[0m
-?[0;34m2023-02-07 09:17:20.809  WARN 334220 --- [io-28852-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;?&gt; account.Controllers.AuthController.signUp(account.Models.User): [Field error in object 'user' on field 'lastname': rejected value []; codes [NotBlank.user.lastname,NotBlank.lastname,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.lastname,lastname]; arguments []; default message [lastname]]; default message [must not be blank]] ]
 ?[1;31m
 Start test 5?[0m
-?[0;34m2023-02-07 09:17:20.818  WARN 334220 --- [io-28852-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;?&gt; account.Controllers.AuthController.signUp(account.Models.User) with 2 errors: [Field error in object 'user' on field 'lastname': rejected value [null]; codes [NotNull.user.lastname,NotNull.lastname,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.lastname,lastname]; arguments []; default message [lastname]]; default message [must not be null]] [Field error in object 'user' on field 'lastname': rejected value [null]; codes [NotBlank.user.lastname,NotBlank.lastname,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.lastname,lastname]; arguments []; default message [lastname]]; default message [must not be blank]] ]
 ?[1;31m
 Start test 6?[0m
-?[0;34m2023-02-07 09:17:20.828  WARN 334220 --- [io-28852-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;?&gt; account.Controllers.AuthController.signUp(account.Models.User): [Field error in object 'user' on field 'email': rejected value []; codes [Pattern.user.email,Pattern.email,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@7fb87fb6,^.*?\b@acme.com.*?]; default message [must match &quot;^.*?\b@acme.com.*?&quot;]] ]
 ?[1;31m
 Start test 7?[0m
-?[0;34m2023-02-07 09:17:20.836  WARN 334220 --- [io-28852-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;?&gt; account.Controllers.AuthController.signUp(account.Models.User) with 2 errors: [Field error in object 'user' on field 'lastname': rejected value [null]; codes [NotBlank.user.lastname,NotBlank.lastname,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.lastname,lastname]; arguments []; default message [lastname]]; default message [must not be blank]] [Field error in object 'user' on field 'lastname': rejected value [null]; codes [NotNull.user.lastname,NotNull.lastname,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.lastname,lastname]; arguments []; default message [lastname]]; default message [must not be null]] ]
 ?[1;31m
 Start test 8?[0m
-?[0;34m2023-02-07 09:17:20.844  WARN 334220 --- [io-28852-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;?&gt; account.Controllers.AuthController.signUp(account.Models.User): [Field error in object 'user' on field 'password': rejected value []; codes [NotBlank.user.password,NotBlank.password,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.password,password]; arguments []; default message [password]]; default message [must not be blank]] ]
+?[0;34m2023-02-10 09:20:47.894  WARN 119385 --- [o-28852-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public account.Models.UserResponse account.Controllers.AuthController.signUp(account.Models.UserRequest): [Field error in object 'userRequest' on field 'name': rejected value []; codes [NotEmpty.userRequest.name,NotEmpty.name,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRequest.name,name]; arguments []; default message [name]]; default message [must not be empty]] ]
 ?[1;31m
 Start test 9?[0m
-?[0;34m2023-02-07 09:17:20.852  WARN 334220 --- [io-28852-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;?&gt; account.Controllers.AuthController.signUp(account.Models.User) with 2 errors: [Field error in object 'user' on field 'password': rejected value [null]; codes [NotNull.user.password,NotNull.password,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.password,password]; arguments []; default message [password]]; default message [must not be null]] [Field error in object 'user' on field 'password': rejected value [null]; codes [NotBlank.user.password,NotBlank.password,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.password,password]; arguments []; default message [password]]; default message [must not be blank]] ]
+?[0m?[0;34m2023-02-10 09:20:47.903  WARN 119385 --- [io-28852-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public account.Models.UserResponse account.Controllers.AuthController.signUp(account.Models.UserRequest) with 2 errors: [Field error in object 'userRequest' on field 'name': rejected value [null]; codes [NotNull.userRequest.name,NotNull.name,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRequest.name,name]; arguments []; default message [name]]; default message [must not be null]] [Field error in object 'userRequest' on field 'name': rejected value [null]; codes [NotEmpty.userRequest.name,NotEmpty.name,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRequest.name,name]; arguments []; default message [name]]; default message [must not be empty]] ]
 ?[1;31m
 Start test 10?[0m
-?[0;34m2023-02-07 09:17:20.859  WARN 334220 --- [o-28852-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;?&gt; account.Controllers.AuthController.signUp(account.Models.User) with 2 errors: [Field error in object 'user' on field 'email': rejected value [johndoeacme.com]; codes [Email.user.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@5b69f800,.*]; default message [must be a well-formed email address]] [Field error in object 'user' on field 'email': rejected value [johndoeacme.com]; codes [Pattern.user.email,Pattern.email,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@7fb87fb6,^.*?\b@acme.com.*?]; default message [must match &quot;^.*?\b@acme.com.*?&quot;]] ]
+?[0;34m2023-02-10 09:20:47.912  WARN 119385 --- [io-28852-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public account.Models.UserResponse account.Controllers.AuthController.signUp(account.Models.UserRequest): [Field error in object 'userRequest' on field 'lastname': rejected value []; codes [NotEmpty.userRequest.lastname,NotEmpty.lastname,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRequest.lastname,lastname]; arguments []; default message [lastname]]; default message [must not be empty]] ]
 ?[1;31m
 Start test 11?[0m
-?[0m?[0;34m2023-02-07 09:17:20.867  WARN 334220 --- [io-28852-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity&lt;?&gt; account.Controllers.AuthController.signUp(account.Models.User): [Field error in object 'user' on field 'email': rejected value [johndoe@google.com]; codes [Pattern.user.email,Pattern.email,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@7fb87fb6,^.*?\b@acme.com.*?]; default message [must match &quot;^.*?\b@acme.com.*?&quot;]] ]
+?[0;34m2023-02-10 09:20:47.921  WARN 119385 --- [io-28852-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public account.Models.UserResponse account.Controllers.AuthController.signUp(account.Models.UserRequest) with 2 errors: [Field error in object 'userRequest' on field 'lastname': rejected value [null]; codes [NotEmpty.userRequest.lastname,NotEmpty.lastname,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRequest.lastname,lastname]; arguments []; default message [lastname]]; default message [must not be empty]] [Field error in object 'userRequest' on field 'lastname': rejected value [null]; codes [NotNull.userRequest.lastname,NotNull.lastname,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRequest.lastname,lastname]; arguments []; default message [lastname]]; default message [must not be null]] ]
 ?[1;31m
 Start test 12?[0m
-?[0m?[0;34m2023-02-07 09:17:20.873  WARN 334220 --- [io-28852-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
-?[0m?[0;34m2023-02-07 09:17:20.879  WARN 334220 --- [io-28852-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' not supported]
-?[0m?[0;34m2023-02-07 09:17:20.885  WARN 334220 --- [io-28852-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'DELETE' not supported]
+?[0;34m2023-02-10 09:20:47.932  WARN 119385 --- [io-28852-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public account.Models.UserResponse account.Controllers.AuthController.signUp(account.Models.UserRequest) with 2 errors: [Field error in object 'userRequest' on field 'email': rejected value []; codes [Pattern.userRequest.email,Pattern.email,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRequest.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@289c39ce,^.*?\b@acme.com.*?]; default message [must match &quot;^.*?\b@acme.com.*?&quot;]] [Field error in object 'userRequest' on field 'email': rejected value []; codes [NotEmpty.userRequest.email,NotEmpty.email,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRequest.email,email]; arguments []; default message [email]]; default message [must not be empty]] ]
 ?[1;31m
 Start test 13?[0m
+?[0;34m2023-02-10 09:20:47.941  WARN 119385 --- [io-28852-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public account.Models.UserResponse account.Controllers.AuthController.signUp(account.Models.UserRequest) with 2 errors: [Field error in object 'userRequest' on field 'lastname': rejected value [null]; codes [NotNull.userRequest.lastname,NotNull.lastname,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRequest.lastname,lastname]; arguments []; default message [lastname]]; default message [must not be null]] [Field error in object 'userRequest' on field 'lastname': rejected value [null]; codes [NotEmpty.userRequest.lastname,NotEmpty.lastname,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRequest.lastname,lastname]; arguments []; default message [lastname]]; default message [must not be empty]] ]
+?[1;31m
+Start test 14?[0m
+?[0;34m2023-02-10 09:20:47.949  WARN 119385 --- [io-28852-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public account.Models.UserResponse account.Controllers.AuthController.signUp(account.Models.UserRequest): [Field error in object 'userRequest' on field 'password': rejected value []; codes [NotEmpty.userRequest.password,NotEmpty.password,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRequest.password,password]; arguments []; default message [password]]; default message [must not be empty]] ]
+?[1;31m
+Start test 15?[0m
+?[0;34m2023-02-10 09:20:47.957  WARN 119385 --- [io-28852-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public account.Models.UserResponse account.Controllers.AuthController.signUp(account.Models.UserRequest) with 2 errors: [Field error in object 'userRequest' on field 'password': rejected value [null]; codes [NotNull.userRequest.password,NotNull.password,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRequest.password,password]; arguments []; default message [password]]; default message [must not be null]] [Field error in object 'userRequest' on field 'password': rejected value [null]; codes [NotEmpty.userRequest.password,NotEmpty.password,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRequest.password,password]; arguments []; default message [password]]; default message [must not be empty]] ]
+?[1;31m
+Start test 16?[0m
+?[0;34m2023-02-10 09:20:47.967  WARN 119385 --- [io-28852-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public account.Models.UserResponse account.Controllers.AuthController.signUp(account.Models.UserRequest) with 2 errors: [Field error in object 'userRequest' on field 'email': rejected value [johndoeacme.com]; codes [Email.userRequest.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRequest.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@32a8d1aa,.*]; default message [must be a well-formed email address]] [Field error in object 'userRequest' on field 'email': rejected value [johndoeacme.com]; codes [Pattern.userRequest.email,Pattern.email,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRequest.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@289c39ce,^.*?\b@acme.com.*?]; default message [must match &quot;^.*?\b@acme.com.*?&quot;]] ]
+?[1;31m
+Start test 17?[0m
+?[0;34m2023-02-10 09:20:47.977  WARN 119385 --- [io-28852-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public account.Models.UserResponse account.Controllers.AuthController.signUp(account.Models.UserRequest): [Field error in object 'userRequest' on field 'email': rejected value [johndoe@google.com]; codes [Pattern.userRequest.email,Pattern.email,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userRequest.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@289c39ce,^.*?\b@acme.com.*?]; default message [must match &quot;^.*?\b@acme.com.*?&quot;]] ]
+?[1;31m
+Start test 18?[0m
+?[1;31m
+Start test 19?[0m
+?[1;31m
+Start test 20?[0m
+?[1;31m
+Start test 21?[0m
+?[1;31m
+Start test 22?[0m
+?[1;31m
+Start test 23?[0m
+?[1;31m
+Start test 24?[0m
+?[1;31m
+Start test 25?[0m
+?[1;31m
+Start test 26?[0m
+?[1;31m
+Start test 27?[0m
+?[1;31m
+Start test 28?[0m
+?[0;34m2023-02-10 09:20:49.355  INFO 119385 --- [     Thread-336] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+?[0m?[0;34m2023-02-10 09:20:49.356  INFO 119385 --- [     Thread-336] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+?[0m?[0;34m2023-02-10 09:20:49.357  INFO 119385 --- [     Thread-336] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+?[0m?[0;34m2023-02-10 09:20:49.366  INFO 119385 --- [     Thread-336] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+?[0;34m
+?[0m?[0;34m  .   ____          _            __ _ _
+?[0m?[0;34m /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+?[0m?[0;34m( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+?[0m?[0;34m \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+?[0m?[0;34m  '  |____| .__|_| |_|_| |_\__, | / / / /
+?[0m?[0;34m =========|_|==============|___/=/_/_/_/
+?[0m?[0;34m :: Spring Boot ::        (v2.3.1.RELEASE)
+?[0m?[0;34m
+?[0m?[0;34m2023-02-10 09:20:58.871  INFO 119385 --- [    Test worker] account.AccountServiceApplication        : Starting AccountServiceApplication on kronos-Olympos with PID 119385 (started by kronos in /home/kronos/IdeaProjects/Account Service/Account Service/task)
+?[0m?[0;34m2023-02-10 09:20:58.872  INFO 119385 --- [    Test worker] account.AccountServiceApplication        : No active profile set, falling back to default profiles: default
+?[0m?[0;34m2023-02-10 09:20:59.029  INFO 119385 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+?[0m?[0;34m2023-02-10 09:20:59.033  INFO 119385 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3ms. Found 1 JPA repository interfaces.
+?[0m?[0;34m2023-02-10 09:20:59.077  INFO 119385 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
+?[0m?[0;34m2023-02-10 09:20:59.078  INFO 119385 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+?[0m?[0;34m2023-02-10 09:20:59.078  INFO 119385 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.36]
+?[0m?[0;34m2023-02-10 09:20:59.087  INFO 119385 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+?[0m?[0;34m2023-02-10 09:20:59.088  INFO 119385 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 215 ms
+?[0m?[0;34m2023-02-10 09:20:59.125  INFO 119385 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+?[0m?[0;34m2023-02-10 09:20:59.133  INFO 119385 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+?[0m?[0;34m2023-02-10 09:20:59.133  INFO 119385 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
+?[0m?[0;34m2023-02-10 09:20:59.158  INFO 119385 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+?[0;34m2023-02-10 09:20:59.161  INFO 119385 --- [         task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+?[0m?[0;34m2023-02-10 09:20:59.164  INFO 119385 --- [         task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+?[0m?[0;34m2023-02-10 09:20:59.172  WARN 119385 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+?[0m?[0;34m2023-02-10 09:20:59.192  INFO 119385 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@66ab088c, org.springframework.security.web.context.SecurityContextPersistenceFilter@16c1d11, org.springframework.security.web.header.HeaderWriterFilter@64f613da, org.springframework.security.web.authentication.logout.LogoutFilter@2fc40856, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5543d800, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@123d0816, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4601a148, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5d01a2eb, org.springframework.security.web.session.SessionManagementFilter@2f64f99f, org.springframework.security.web.access.ExceptionTranslationFilter@5eb9bf7d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1be12e05]
+?[0m?[0;34m2023-02-10 09:20:59.205  INFO 119385 --- [         task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+?[0m?[0;34m2023-02-10 09:20:59.205  INFO 119385 --- [         task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+?[0m?[0;34m2023-02-10 09:20:59.296  INFO 119385 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+?[0m?[0;34m2023-02-10 09:20:59.306  INFO 119385 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
+?[0m?[0;34m2023-02-10 09:20:59.306  INFO 119385 --- [    Test worker] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+?[0m?[0;34m2023-02-10 09:20:59.332  INFO 119385 --- [    Test worker] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+?[0m?[0;34m2023-02-10 09:20:59.338  INFO 119385 --- [    Test worker] account.AccountServiceApplication        : Started AccountServiceApplication in 0.483 seconds (JVM running for 14.882)
+?[0m?[1;31m
+Start test 29?[0m
+?[0;34m2023-02-10 09:20:59.344  INFO 119385 --- [io-28852-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+?[0m?[0;34m2023-02-10 09:20:59.344  INFO 119385 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+?[0m?[0;34m2023-02-10 09:20:59.346  INFO 119385 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 </pre>
 </span>
 </div>
@@ -173,7 +244,7 @@ Start test 13?[0m
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.3.3</a> at Feb 7, 2023, 9:17:20 AM</p>
+<a href="http://www.gradle.org">Gradle 7.3.3</a> at Feb 10, 2023, 9:20:59 AM</p>
 </div>
 </div>
 </body>

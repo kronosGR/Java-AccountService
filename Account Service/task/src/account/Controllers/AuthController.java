@@ -1,6 +1,8 @@
 package account.Controllers;
 
 import account.Models.User;
+import account.Models.UserRequest;
+import account.Models.UserResponse;
 import account.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,12 +21,7 @@ public class AuthController {
     UserService service;
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signUp(@Valid @RequestBody User newUser){
-        User tmp = service.signUp(newUser);
-
-        if (tmp.equals(null)){
-            return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
-        }
-        return ResponseEntity.ok(tmp);
+    public UserResponse signUp(@Valid @RequestBody UserRequest newUser){
+        return service.signUp(newUser);
     }
 }

@@ -367,6 +367,159 @@ files:
       };
     }
   learner_created: false
+- name: src/account/Services/UserService.java
+  visible: true
+  text: |
+    package account.Services;
+
+    import account.Exceptions.UserExistsException;
+    import account.Models.User;
+    import lombok.NoArgsConstructor;
+    import org.springframework.stereotype.Service;
+
+    import java.util.ArrayList;
+    import java.util.List;
+
+    @Service
+    @NoArgsConstructor
+    public class UserService {
+
+    //    List<User> users = new ArrayList<>();
+        User user;
+        public User signUp(User user){
+    //        if (users.contains(user) )
+    //            try {
+    //            throw new UserExistsException();
+    //        } catch (Exception e) {
+    //            throw new RuntimeException(e);
+    //        }
+            user= user;
+            return user;
+        }
+    }
+  learner_created: true
+- name: src/account/Exceptions/UserExistsException.java
+  visible: true
+  text: |
+    package account.Exceptions;
+
+    import org.springframework.http.HttpStatus;
+    import org.springframework.web.bind.annotation.ResponseStatus;
+
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST, reason = "User exists!")
+    public class UserExistsException  extends RuntimeException{
+    }
+  learner_created: true
+- name: src/account/Models/User.java
+  visible: true
+  text: |
+    package account.Models;
+
+    import com.fasterxml.jackson.annotation.JsonIgnore;
+    import com.fasterxml.jackson.annotation.JsonProperty;
+    import lombok.AllArgsConstructor;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+
+    import javax.persistence.Entity;
+    import javax.validation.constraints.Email;
+    import javax.validation.constraints.NotBlank;
+    import javax.validation.constraints.NotNull;
+    import javax.validation.constraints.Pattern;
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public class User {
+
+        @NotBlank
+        @NotNull
+        String name;
+
+        @NotBlank
+        @NotNull
+        String lastname;
+
+        @NotNull
+        @NotNull
+        @Email
+        @Pattern(regexp = "^.*?\\b@acme.com.*?", flags = {Pattern.Flag.CASE_INSENSITIVE})
+        String email;
+
+        @NotBlank
+        @NotNull
+        @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+        String password;
+
+
+
+
+    }
+  learner_created: true
+- name: src/account/Controllers/AuthController.java
+  visible: true
+  text: |
+    package account.Controllers;
+
+    import account.Models.User;
+    import account.Services.UserService;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.web.bind.annotation.*;
+
+    import javax.validation.Valid;
+    import java.lang.reflect.Method;
+
+    @RestController
+    @RequestMapping("/api/auth")
+    public class AuthController {
+
+
+        @Autowired
+        UserService service;
+
+        @PostMapping("/signup")
+        public ResponseEntity<?> signUp(@Valid @RequestBody User newUser){
+            User tmp = service.signUp(newUser);
+
+            if (tmp.equals(null)){
+                return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
+            }
+            return ResponseEntity.ok(tmp);
+        }
+    }
+  learner_created: true
+- name: src/account/Repositories/UserRepository.java
+  visible: true
+  learner_created: true
+- name: src/account/Configurations/BCryptEncoderConfig.java
+  visible: true
+  learner_created: true
+- name: src/account/Models/UserRequest.java
+  visible: true
+  learner_created: true
+- name: src/account/Utils/UserMapper.java
+  visible: true
+  learner_created: true
+- name: src/account/Models/UserResponse.java
+  visible: true
+  learner_created: true
+- name: src/account/Configurations/SecurityConfig.java
+  visible: true
+  learner_created: true
+- name: src/account/Configurations/RestAuthenticationEntryPoint.java
+  visible: true
+  learner_created: true
+- name: src/account/Controllers/EmployeeController.java
+  visible: true
+  learner_created: true
+- name: src/account/Services/IUserService.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/16602#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Fri, 10 Feb 2023 08:20:59 UTC"
 record: -1
