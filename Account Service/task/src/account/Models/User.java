@@ -2,41 +2,79 @@ package account.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.Collection;
 
-@Data
+@Entity
+@Table(name = "users")
 @NoArgsConstructor
-@AllArgsConstructor
-public class User {
+@Getter
+@Setter
+public class User implements UserDetails {
 
-    @NotBlank
-    @NotNull
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
+
+    @Column(nullable = false)
     String name;
 
-    @NotBlank
-    @NotNull
+    @Column(nullable = false)
     String lastname;
 
-    @NotNull
-    @NotNull
-    @Email
-    @Pattern(regexp = "^.*?\\b@acme.com.*?", flags = {Pattern.Flag.CASE_INSENSITIVE})
-    String email;
+    @Column(nullable = false, unique = true)
+    String username;
 
-    @NotBlank
-    @NotNull
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(nullable = false)
     String password;
 
+    public User(String name, String lastname, String username, String password) {
+        this.name = name;
+        this.lastname = lastname;
+        this.username = username;
+        this.password = password;
+    }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
 
+    @Override
+    public String getPassword() {
+        return password;
+    }
 
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 }
