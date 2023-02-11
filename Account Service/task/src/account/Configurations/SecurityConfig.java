@@ -49,6 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/empl/payment").authenticated()
                 .antMatchers(HttpMethod.POST, "/api/auth/changepass").authenticated()
                 .antMatchers(HttpMethod.POST, "/api/auth/signup").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/acct/payments").permitAll()
+                .antMatchers(HttpMethod.PUT, "/api/acct/payments").permitAll()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS); // no session

@@ -709,6 +709,646 @@ files:
       };
     }
   learner_created: false
+- name: src/account/Services/IUserService.java
+  visible: true
+  text: |
+    package account.Services;
+
+    import account.Models.User;
+
+    public interface IUserService {
+        public Long saveUser(User user);
+    }
+  learner_created: true
+- name: src/account/Exceptions/PasswordBreachedException.java
+  visible: true
+  text: |
+    package account.Exceptions;
+
+    import org.springframework.http.HttpStatus;
+    import org.springframework.web.bind.annotation.ResponseStatus;
+
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST, reason = "The password is in the hacker's database!")
+    public class PasswordBreachedException  extends RuntimeException{
+    }
+  learner_created: true
+- name: src/account/Configurations/SecurityConfig.java
+  visible: true
+  text: |
+    package account.Configurations;
+
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.context.annotation.Bean;
+    import org.springframework.context.annotation.Configuration;
+    import org.springframework.http.HttpMethod;
+    import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+    import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+    import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+    import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+    import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+    import org.springframework.security.config.http.SessionCreationPolicy;
+    import org.springframework.security.core.userdetails.UserDetailsService;
+
+    @Configuration
+    @EnableWebSecurity
+    public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+        @Autowired
+        UserDetailsService userDetailsService;
+
+        @Autowired
+        BCryptEncoderConfig bCryptEncoderConfig;
+
+        @Autowired
+        RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+
+        @Bean
+        public DaoAuthenticationProvider authenticationProvider(){
+            DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+            provider.setPasswordEncoder(bCryptEncoderConfig.passwordEncoder());
+            provider.setUserDetailsService(userDetailsService);
+            return provider;
+        }
+
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+            auth.userDetailsService(userDetailsService).passwordEncoder(bCryptEncoderConfig.passwordEncoder());
+        }
+
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http.httpBasic()
+                    .authenticationEntryPoint(restAuthenticationEntryPoint) // Handle auth error
+                    .and()
+                    .csrf().disable().headers().frameOptions().disable() // for Postman, the H2 console
+                    .and()
+                    .authorizeRequests() // manage access
+                    .antMatchers(HttpMethod.GET, "/api/empl/payment").authenticated()
+                    .antMatchers(HttpMethod.POST, "/api/auth/changepass").authenticated()
+                    .antMatchers(HttpMethod.POST, "/api/auth/signup").permitAll()
+                    .and()
+                    .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS); // no session
+        }
+    }
+  learner_created: true
+- name: src/account/Models/PasswordRequest.java
+  visible: true
+  text: |
+    package account.Models;
+
+    import lombok.AllArgsConstructor;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+
+    import javax.validation.constraints.NotBlank;
+    import javax.validation.constraints.NotEmpty;
+    import javax.validation.constraints.NotNull;
+    import javax.validation.constraints.Size;
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public class PasswordRequest {
+
+        @Size(min = 12, message = "Password length must be 12 chars minimum!")
+        @NotEmpty
+        @NotNull
+        String new_password;
+    }
+  learner_created: true
+- name: src/account/Exceptions/UserExistsException.java
+  visible: true
+  text: |
+    package account.Exceptions;
+
+    import org.springframework.http.HttpStatus;
+    import org.springframework.web.bind.annotation.ResponseStatus;
+
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST, reason = "User exist!")
+    public class UserExistsException  extends RuntimeException{
+    }
+  learner_created: true
+- name: src/account/Controllers/EmployeeController.java
+  visible: true
+  text: |
+    package account.Controllers;
+
+    import account.Models.UserResponse;
+    import account.Services.UserService;
+    import lombok.AllArgsConstructor;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.boot.actuate.endpoint.SecurityContext;
+    import org.springframework.security.core.Authentication;
+    import org.springframework.security.core.context.SecurityContextHolder;
+    import org.springframework.web.bind.annotation.GetMapping;
+    import org.springframework.web.bind.annotation.Mapping;
+    import org.springframework.web.bind.annotation.RequestMapping;
+    import org.springframework.web.bind.annotation.RestController;
+
+    @RestController
+    @RequestMapping( "api/empl")
+    public class EmployeeController {
+
+        @Autowired
+        UserService userService;
+
+        @GetMapping("/payment")
+        public UserResponse getPayment(){
+            return userService.findUser(SecurityContextHolder.getContext().getAuthentication().getName());
+        }
+    }
+  learner_created: true
+- name: src/account/Models/User.java
+  visible: true
+  text: |
+    package account.Models;
+
+    import account.Services.IUserService;
+    import com.fasterxml.jackson.annotation.JsonIgnore;
+    import com.fasterxml.jackson.annotation.JsonProperty;
+    import lombok.*;
+    import org.springframework.security.core.GrantedAuthority;
+    import org.springframework.security.core.userdetails.UserDetails;
+
+    import javax.persistence.*;
+    import javax.validation.constraints.*;
+    import java.util.Collection;
+
+    @Entity
+    @Table(name = "users")
+    @NoArgsConstructor
+    @Data
+    public class User implements  UserDetails {
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        Long id;
+
+        @Column(nullable = false)
+        String name;
+
+        @Column(nullable = false)
+        String lastname;
+
+        @Column(nullable = false, unique = true)
+        String username;
+
+        @Column(nullable = false)
+        @Size(min = 12, message = "Password length must be 12 chars minimum!")
+        String password;
+
+        public User(String name, String lastname, String username, String password) {
+            this.name = name;
+            this.lastname = lastname;
+            this.username = username;
+            this.password = password;
+        }
+
+        @Override
+        public Collection<? extends GrantedAuthority> getAuthorities() {
+            return null;
+        }
+
+        @Override
+        public String getPassword() {
+            return password;
+        }
+
+        @Override
+        public String getUsername() {
+            return username;
+        }
+
+        @Override
+        public boolean isAccountNonExpired() {
+            return true;
+        }
+
+        @Override
+        public boolean isAccountNonLocked() {
+            return true;
+        }
+
+        @Override
+        public boolean isCredentialsNonExpired() {
+            return true;
+        }
+
+        @Override
+        public boolean isEnabled() {
+            return true;
+        }
+    }
+  learner_created: true
+- name: src/account/Controllers/AuthController.java
+  visible: true
+  text: |
+    package account.Controllers;
+
+    import account.Models.*;
+    import account.Services.UserService;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.web.bind.annotation.*;
+
+    import javax.validation.Valid;
+    import java.lang.reflect.Method;
+
+    @RestController
+    @RequestMapping("/api/auth")
+    public class AuthController {
+
+
+        @Autowired
+        UserService service;
+
+        @PostMapping("/signup")
+        public UserResponse signUp(@RequestBody @Valid UserRequest newUser){
+            return service.signUp(newUser);
+        }
+
+        @PostMapping("/changepass")
+        public PasswordResponse updatePassword(@RequestBody @Valid PasswordRequest passwordRequest){
+            return service.changePassword(passwordRequest);
+        }
+    }
+  learner_created: true
+- name: src/account/Models/UserResponse.java
+  visible: true
+  text: |
+    package account.Models;
+
+    import lombok.AllArgsConstructor;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public class UserResponse {
+
+        Long id;
+        String name;
+        String lastname;
+        String email;
+    }
+  learner_created: true
+- name: src/account/Repositories/UserRepository.java
+  visible: true
+  text: |
+    package account.Repositories;
+
+    import account.Models.User;
+    import org.springframework.data.jpa.repository.JpaRepository;
+    import org.springframework.data.jpa.repository.Modifying;
+    import org.springframework.data.jpa.repository.Query;
+    import org.springframework.data.repository.query.Param;
+    import org.springframework.stereotype.Repository;
+
+    import java.util.Optional;
+
+    @Repository
+    public interface UserRepository extends JpaRepository<User, Long> {
+
+        Optional<User> findByUsername(String username);
+
+        @Modifying
+        @Query("update User u set u.password = :password where u.username=:username")
+        void updatePassword(@Param("password") String password, @Param("username") String username);
+    }
+  learner_created: true
+- name: src/account/Services/UserService.java
+  visible: true
+  text: |
+    package account.Services;
+
+    import account.Configurations.BCryptEncoderConfig;
+    import account.Exceptions.PasswordBreachedException;
+    import account.Exceptions.SamePasswordException;
+    import account.Exceptions.UserExistsException;
+    import account.Models.*;
+    import account.Repositories.UserRepository;
+    import account.Utils.UserMapper;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.security.core.context.SecurityContextHolder;
+    import org.springframework.security.core.userdetails.UserDetails;
+    import org.springframework.security.core.userdetails.UserDetailsService;
+    import org.springframework.security.core.userdetails.UsernameNotFoundException;
+    import org.springframework.stereotype.Service;
+    import org.springframework.transaction.annotation.Transactional;
+
+    import java.util.ArrayList;
+    import java.util.Arrays;
+    import java.util.List;
+    @Service
+    public class UserService implements IUserService,UserDetailsService {
+
+        String[] breachedPasswords = {
+                "PasswordForJanuary",
+                "PasswordForFebruary",
+                "PasswordForMarch",
+                "PasswordForApril",
+                "PasswordForMay",
+                "PasswordForJune",
+                "PasswordForJuly",
+                "PasswordForAugust",
+                "PasswordForSeptember",
+                "PasswordForOctober",
+                "PasswordForNovember",
+                "PasswordForDecember"
+        };
+
+        @Autowired
+        UserRepository userRepository;
+        @Autowired
+        BCryptEncoderConfig bCryptEncoderConfig;
+
+        @Autowired
+        UserMapper userMapper;
+
+
+        public UserResponse signUp(UserRequest userRequest) {
+            if (userRepository.findByUsername(userRequest.getEmail().toLowerCase()).isPresent()){
+                throw new UserExistsException();
+            }
+
+            if (isPassBreached(userRequest.getPassword())){
+                throw new PasswordBreachedException();
+            }
+
+            userRequest.setPassword(bCryptEncoderConfig.passwordEncoder().encode(userRequest.getPassword()));
+            User user = userRepository.save(userMapper.requestToUser(userRequest));
+            return userMapper.userToUserResponse(user);
+        }
+
+        @Override
+        public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+            return userRepository.findByUsername(username.toLowerCase())
+                    .orElseThrow(()-> new UsernameNotFoundException(String.format("Username ½s not found")));
+        }
+
+        public UserResponse findUser(String username){
+            User tmp = userRepository.findByUsername(username.toLowerCase()).orElseThrow(()->new UsernameNotFoundException(username));
+            return userMapper.userToUserResponse(tmp);
+        }
+
+        @Override
+        public Long saveUser(User user) {
+            String passwd = user.getPassword();
+            String encodedPasswd = bCryptEncoderConfig.passwordEncoder().encode(passwd);
+            user.setPassword(encodedPasswd);
+            user = userRepository.save(user);
+            return user.getId();
+        }
+
+        @Transactional
+        public PasswordResponse changePassword(PasswordRequest passwordRequest) {
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            String password = passwordRequest.getNew_password();
+
+            if(isPassBreached(password)){
+                throw new PasswordBreachedException();
+            }
+
+            User user = (User)loadUserByUsername(username);
+            if (bCryptEncoderConfig.passwordEncoder().matches(password, user.getPassword())){
+                throw new SamePasswordException();
+            }
+
+            userRepository.updatePassword(bCryptEncoderConfig.passwordEncoder().encode(password),
+                    username);
+            return new PasswordResponse(username, "The password has been updated successfully");
+        }
+
+        private boolean isPassBreached(String pass){
+            return Arrays.asList(breachedPasswords).contains(pass);
+        }
+    }
+  learner_created: true
+- name: src/account/Configurations/BCryptEncoderConfig.java
+  visible: true
+  text: |
+    package account.Configurations;
+
+    import org.springframework.context.annotation.Bean;
+    import org.springframework.context.annotation.Configuration;
+    import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+    @Configuration
+    public class BCryptEncoderConfig {
+
+        @Bean
+        public BCryptPasswordEncoder passwordEncoder(){
+            return new BCryptPasswordEncoder(9);
+        }
+    }
+  learner_created: true
+- name: src/account/Configurations/RestAuthenticationEntryPoint.java
+  visible: true
+  text: |
+    package account.Configurations;
+
+    import org.springframework.security.core.AuthenticationException;
+    import org.springframework.security.web.AuthenticationEntryPoint;
+    import org.springframework.stereotype.Component;
+
+    import javax.servlet.ServletException;
+    import javax.servlet.http.HttpServletRequest;
+    import javax.servlet.http.HttpServletResponse;
+    import java.io.IOException;
+
+    @Component
+    public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
+        @Override
+        public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
+        }
+    }
+  learner_created: true
+- name: src/account/Exceptions/SamePasswordException.java
+  visible: true
+  text: |
+    package account.Exceptions;
+
+    import org.springframework.http.HttpStatus;
+    import org.springframework.web.bind.annotation.ResponseStatus;
+
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST, reason = "The passwords must be different!")
+    public class SamePasswordException extends RuntimeException{
+    }
+  learner_created: true
+- name: src/account/Models/UserRequest.java
+  visible: true
+  text: |
+    package account.Models;
+
+    import lombok.AllArgsConstructor;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+    import lombok.ToString;
+
+    import javax.persistence.Entity;
+    import javax.validation.constraints.*;
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @ToString
+    public class UserRequest {
+        @NotNull
+        @NotEmpty
+        String name;
+
+        @NotNull
+        @NotEmpty
+        String lastname;
+
+        @NotNull
+        @NotEmpty
+        @Email
+        @Pattern(regexp = "^.*?\\b@acme.com.*?", flags = {Pattern.Flag.CASE_INSENSITIVE})
+        String email;
+
+        @NotNull
+        @NotEmpty
+        @Size(min = 12, message = "Password length must be 12 chars minimum!")
+        String password;
+    }
+  learner_created: true
+- name: src/account/Exceptions/EntityExceptionHandler.java
+  visible: true
+  text: |
+    package account.Exceptions;
+
+    import org.springframework.context.support.DefaultMessageSourceResolvable;
+    import org.springframework.http.HttpHeaders;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.web.bind.MethodArgumentNotValidException;
+    import org.springframework.web.bind.annotation.ControllerAdvice;
+    import org.springframework.web.bind.annotation.RequestBody;
+    import org.springframework.web.context.request.WebRequest;
+    import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+    import java.util.Date;
+    import java.util.LinkedHashMap;
+    import java.util.Map;
+    import java.util.stream.Collectors;
+
+    @ControllerAdvice
+    public class EntityExceptionHandler extends ResponseEntityExceptionHandler {
+
+        @Override
+        protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers,
+                                                                      HttpStatus status, WebRequest request) {
+            String msg = ex.getBindingResult().getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage)
+                    .collect(Collectors.joining(", "));
+            Map<String, Object> error = new LinkedHashMap<>();
+            error.put("timestamp", new Date().toString());
+            error.put("status", status.value());
+            error.put("error", status.getReasonPhrase());
+            error.put("message", msg);
+            error.put("path", request.getDescription(false).substring(4));
+            return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+        }
+    }
+  learner_created: true
+- name: src/account/Models/PasswordResponse.java
+  visible: true
+  text: |
+    package account.Models;
+
+    import lombok.AllArgsConstructor;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public class PasswordResponse {
+
+        String email;
+        String status;
+    }
+  learner_created: true
+- name: src/account/Services/EmployeeService.java
+  visible: true
+  learner_created: true
+- name: src/account/Models/Payment.java
+  visible: true
+  learner_created: true
+- name: src/account/Models/PaymentResponse.java
+  visible: true
+  learner_created: true
+- name: src/account/Models/PaymentRequest.java
+  visible: true
+  learner_created: true
+- name: src/account/Models/PaymentStatusResponse.java
+  visible: true
+  learner_created: true
+- name: src/account/Repositories/PaymentRepository.java
+  visible: true
+  learner_created: true
+- name: src/account/Utils/Mappers.java
+  visible: true
+  text: |
+    package account.Utils;
+
+    import account.Models.User;
+    import account.Models.UserRequest;
+    import account.Models.UserResponse;
+    import org.springframework.stereotype.Component;
+
+    @Component
+    public class UserMapper {
+
+        public User requestToUser(UserRequest userRequest) {
+            return new User(
+                    userRequest.getName(),
+                    userRequest.getLastname(),
+                    userRequest.getEmail().toLowerCase(),
+                    userRequest.getPassword()
+            );
+        }
+
+        public UserResponse userToUserResponse(User user) {
+            return new UserResponse(
+                    user.getId(),
+                    user.getName(),
+                    user.getLastname(),
+                    user.getUsername()
+            );
+        }
+    }
+  learner_created: true
+- name: src/account/Exceptions/DuplicatePaymentException.java
+  visible: true
+  learner_created: true
+- name: src/account/Exceptions/NotExistPeriod.java
+  visible: true
+  learner_created: true
+- name: src/account/Models/UserPeriod.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/16604#comment
-status: Unchecked
+status: Failed
+feedback:
+  message: |-
+    Wrong answer in test #37
+
+    POST api/acct/payments should respond with status code 200, responded: 500
+    Payment list must be added
+    Response body:
+    {
+      &quot;timestamp&quot; : &quot;2023-02-11T17:45:38.205+00:00&quot;,
+      &quot;status&quot; : 500,
+      &quot;error&quot; : &quot;Internal Server Error&quot;,
+      &quot;message&quot; : &quot;Text &#39;01-2021&#39; could not be parsed at index 0&quot;,
+      &quot;path&quot; : &quot;/api/acct/payments&quot;
+    }
+    Request body:
+    [{&quot;employee&quot;:&quot;johndoe@acme.com&quot;,&quot;period&quot;:&quot;01-2021&quot;,&quot;salary&quot;:123456},{&quot;employee&quot;:&quot;johndoe@acme.com&quot;,&quot;period&quot;:&quot;02-2021&quot;,&quot;salary&quot;:456789},{&quot;employee&quot;:&quot;johndoe@acme.com&quot;,&quot;period&quot;:&quot;03-2021&quot;,&quot;salary&quot;:12},{&quot;employee&quot;:&quot;maxmustermann@acme.com&quot;,&quot;period&quot;:&quot;01-2021&quot;,&quot;salary&quot;:54321},{&quot;employee&quot;:&quot;maxmustermann@acme.com&quot;,&quot;period&quot;:&quot;02-2021&quot;,&quot;salary&quot;:987654},{&quot;employee&quot;:&quot;maxmustermann@acme.com&quot;,&quot;period&quot;:&quot;03-2021&quot;,&quot;salary&quot;:120}]
+  time: "Sat, 11 Feb 2023 17:45:38 UTC"
 record: -1

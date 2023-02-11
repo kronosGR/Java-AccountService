@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -33,6 +34,9 @@ public class User implements  UserDetails {
     @Column(nullable = false)
     @Size(min = 12, message = "Password length must be 12 chars minimum!")
     String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Payment> payments;
 
     public User(String name, String lastname, String username, String password) {
         this.name = name;

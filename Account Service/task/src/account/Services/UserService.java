@@ -6,18 +6,16 @@ import account.Exceptions.SamePasswordException;
 import account.Exceptions.UserExistsException;
 import account.Models.*;
 import account.Repositories.UserRepository;
-import account.Utils.UserMapper;
+import account.Utils.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+
 @Service
 public class UserService implements IUserService,UserDetailsService {
 
@@ -42,7 +40,7 @@ public class UserService implements IUserService,UserDetailsService {
     BCryptEncoderConfig bCryptEncoderConfig;
 
     @Autowired
-    UserMapper userMapper;
+    Mappers userMapper;
 
 
     public UserResponse signUp(UserRequest userRequest) {
@@ -60,7 +58,7 @@ public class UserService implements IUserService,UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public User loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username.toLowerCase())
                 .orElseThrow(()-> new UsernameNotFoundException(String.format("Username ½s not found")));
     }
@@ -89,7 +87,6 @@ public class UserService implements IUserService,UserDetailsService {
         }
 
         User user = (User)loadUserByUsername(username);
-        //String encPass = bCryptEncoderConfig.passwordEncoder().encode(password);
         if (bCryptEncoderConfig.passwordEncoder().matches(password, user.getPassword())){
             throw new SamePasswordException();
         }
