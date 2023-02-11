@@ -1,8 +1,6 @@
 package account.Controllers;
 
-import account.Models.User;
-import account.Models.UserRequest;
-import account.Models.UserResponse;
+import account.Models.*;
 import account.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +19,12 @@ public class AuthController {
     UserService service;
 
     @PostMapping("/signup")
-    public UserResponse signUp(@Valid @RequestBody UserRequest newUser){
+    public UserResponse signUp(@RequestBody @Valid UserRequest newUser){
         return service.signUp(newUser);
+    }
+
+    @PostMapping("/changepass")
+    public PasswordResponse updatePassword(@RequestBody @Valid PasswordRequest passwordRequest){
+        return service.changePassword(passwordRequest);
     }
 }

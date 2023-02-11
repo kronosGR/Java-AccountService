@@ -8,10 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.util.Collection;
 
 @Entity
@@ -34,6 +31,7 @@ public class User implements  UserDetails {
     String username;
 
     @Column(nullable = false)
+    @Size(min = 12, message = "Password length must be 12 chars minimum!")
     String password;
 
     public User(String name, String lastname, String username, String password) {

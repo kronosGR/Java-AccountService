@@ -29,5 +29,6 @@ public class UserRequest {
 
     @NotNull
     @NotEmpty
+    @Size(min = 12, message = "Password length must be 12 chars minimum!")
     String password;
 }
