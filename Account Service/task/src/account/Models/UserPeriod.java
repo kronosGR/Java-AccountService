@@ -7,8 +7,8 @@ import java.util.Objects;
 
 @AllArgsConstructor
 public class UserPeriod {
-    User user;
-    LocalDate period;
+    String user;
+    String period;
 
     @Override
     public boolean equals(Object o) {

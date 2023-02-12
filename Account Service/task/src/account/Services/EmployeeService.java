@@ -5,6 +5,7 @@ import account.Exceptions.NotExistPeriod;
 import account.Models.*;
 import account.Repositories.PaymentRepository;
 import account.Utils.Mappers;
+import account.Utils.Utils;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,17 +43,17 @@ public class EmployeeService {
     public PaymentResponse getUserPaymentByPeriod(String period) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.loadUserByUsername(username);
-        LocalDate date = LocalDate.parse(period, DateTimeFormatter.ofPattern("MMMM-yyyy"));
+        LocalDate date = Utils.toLocalDate(period);
         return paymentRepository.findPaymentByUserAndPeriod(user, date).stream().map(item -> mappers.PaymentToResponse(item))
                 .findFirst().orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find"));
     }
 
     public PaymentStatusResponse postPayments(List<PaymentRequest> paymentRequestList){
-        long count = paymentRequestList.stream().distinct().count();
-        // TODO: the above maybe needs class comparison
+        long count = paymentRequestList.stream().map(item -> new UserPeriod(item.getEmployee(), item.getPeriod()))
+                .distinct().count();
         if (count != paymentRequestList.size()) throw  new DuplicatePaymentException();
 
-        List<Payment> payments = paymentRequestList.stream().map(item -> mappers.paymentRequestToPayment(item))
+        List<Payment> payments = paymentRequestList.stream().map(item -> mappers.paymentRequestToPayment(item, userService))
                 .sorted((a,b) -> b.getPeriod().compareTo(a.getPeriod())).collect(Collectors.toList());
         paymentRepository.saveAll(payments);
         return new PaymentStatusResponse("Added successfully!");
@@ -60,13 +61,13 @@ public class EmployeeService {
 
     @Transactional
     public PaymentStatusResponse updatePayment(PaymentRequest paymentRequest){
-        Payment payment = mappers.paymentRequestToPayment(paymentRequest);
+        Payment payment = mappers.paymentRequestToPayment(paymentRequest,userService);
         List<Payment> payments = paymentRepository.findPaymentByUser(payment.getUser());
 
-        boolean periodExists = payments.stream().map(Payment::getPeriod).noneMatch(item -> item.equals(payment.getPeriod()));
+        boolean periodExists = !(payments.stream().map(Payment::getPeriod).noneMatch(item -> item.equals(payment.getPeriod())));
         if (!periodExists) throw new NotExistPeriod();
 
         paymentRepository.updatePaymentByUserAndPeriod(payment.getUser(),payment.getPeriod(),payment.getSalary());
-        return new PaymentStatusResponse("Updated successfully");
+        return new PaymentStatusResponse("Updated successfully!");
     }
 }

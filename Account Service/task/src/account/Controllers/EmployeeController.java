@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping( "api/")
+@RequestMapping("api/")
 public class EmployeeController {
 
     @Autowired
@@ -32,7 +32,7 @@ public class EmployeeController {
     EmployeeService employeeService;
 
     @GetMapping("empl/payment")
-    public ResponseEntity<?> getPayment(@RequestParam Optional<String> period, @AuthenticationPrincipal User user){
+    public ResponseEntity<?> getPayment(@RequestParam Optional<String> period, @AuthenticationPrincipal User user) {
         if (period.isPresent()) {
             if (!period.get().matches("(0?[1-9]|1[0-2])-\\d+")) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid period param");
@@ -42,13 +42,18 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.getPayments());
     }
 
+
     @PostMapping("acct/payments")
-    public PaymentStatusResponse postPayment(@RequestBody @Valid List<PaymentRequest> payments){
-        return employeeService.postPayments(payments);
+    public PaymentStatusResponse postPayment(@RequestBody @Valid List<PaymentRequest> payments) {
+        try {
+            return employeeService.postPayments(payments);
+        } catch (Exception ex){
+            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PutMapping("acct/payments")
-    public PaymentStatusResponse updatePayment(@RequestBody @Valid PaymentRequest payment){
+    public PaymentStatusResponse updatePayment(@RequestBody @Valid PaymentRequest payment) {
         return employeeService.updatePayment(payment);
     }
 }

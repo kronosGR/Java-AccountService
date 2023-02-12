@@ -1332,23 +1332,12 @@ files:
 - name: src/account/Models/UserPeriod.java
   visible: true
   learner_created: true
+- name: src/account/Utils/Utils.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/16604#comment
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #37
-
-    POST api/acct/payments should respond with status code 200, responded: 500
-    Payment list must be added
-    Response body:
-    {
-      &quot;timestamp&quot; : &quot;2023-02-11T17:45:38.205+00:00&quot;,
-      &quot;status&quot; : 500,
-      &quot;error&quot; : &quot;Internal Server Error&quot;,
-      &quot;message&quot; : &quot;Text &#39;01-2021&#39; could not be parsed at index 0&quot;,
-      &quot;path&quot; : &quot;/api/acct/payments&quot;
-    }
-    Request body:
-    [{&quot;employee&quot;:&quot;johndoe@acme.com&quot;,&quot;period&quot;:&quot;01-2021&quot;,&quot;salary&quot;:123456},{&quot;employee&quot;:&quot;johndoe@acme.com&quot;,&quot;period&quot;:&quot;02-2021&quot;,&quot;salary&quot;:456789},{&quot;employee&quot;:&quot;johndoe@acme.com&quot;,&quot;period&quot;:&quot;03-2021&quot;,&quot;salary&quot;:12},{&quot;employee&quot;:&quot;maxmustermann@acme.com&quot;,&quot;period&quot;:&quot;01-2021&quot;,&quot;salary&quot;:54321},{&quot;employee&quot;:&quot;maxmustermann@acme.com&quot;,&quot;period&quot;:&quot;02-2021&quot;,&quot;salary&quot;:987654},{&quot;employee&quot;:&quot;maxmustermann@acme.com&quot;,&quot;period&quot;:&quot;03-2021&quot;,&quot;salary&quot;:120}]
-  time: "Sat, 11 Feb 2023 17:45:38 UTC"
+  message: Congratulations!
+  time: "Sun, 12 Feb 2023 11:50:55 UTC"
 record: -1

@@ -2,20 +2,12 @@ package account.Utils;
 
 import account.Models.*;
 import account.Services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Component
 public class Mappers {
-
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM-yyyy");
     String DATE_PATTERN = "MMMM-yyyy";
-
-    @Autowired
-    UserService userService;
 
     public User requestToUser(UserRequest userRequest) {
         return new User(
@@ -35,8 +27,8 @@ public class Mappers {
         );
     }
 
-    public Payment paymentRequestToPayment(PaymentRequest paymentRequest) {
-        return new Payment(LocalDate.parse(paymentRequest.getPeriod(), formatter),
+    public Payment paymentRequestToPayment(PaymentRequest paymentRequest, UserService userService) {
+        return new Payment(Utils.toLocalDate(paymentRequest.getPeriod()),
                 userService.loadUserByUsername(paymentRequest.getEmployee().toLowerCase()),
                 paymentRequest.getSalary());
     }
